@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="app-fluid">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title | 在线音乐</title>
+    <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Scripts/css")
+    @Styles.Render("~/Scripts/datatables/css")
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!--[if lt IE 9]>
+      <script src="js/ie/html5shiv.js"></script>
+      <script src="js/ie/respond.min.js"></script>
+      <script src="js/ie/excanvas.js"></script>
+    <![endif]-->
+</head>
+<body class="">
+    <section class="vbox">
+        <header class="bg-primary lter navbar-fixed-top header header-md navbar navbar-fixed-top-xs">
+            <div class="navbar-header aside dker">
+                <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+                    <i class="icon-list"></i>
+                </a>
+                <a href="/home/index" class="navbar-brand text-lt">
+                    <i class="icon-earphones"></i>
+                    <img src="/Content/images/logo_white.png" alt="." class="hide">
+                    <span class="hidden-nav-xs m-l-sm">静听</span>
+                </a>
+                <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
+                    <i class="icon-settings"></i>
+                </a>
+            </div>      <ul class="nav navbar-nav hidden-xs">
+                <li>
+                    <a href="#nav,.navbar-header" data-toggle="class:nav-xs,nav-xs" class="text-muted">
+                        <i class="fa fa-indent text"></i>
+                        <i class="fa fa-dedent text-active"></i>
+                    </a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
+                        </span>
+                        <input type="text" class="form-control input-sm no-border rounded" placeholder="搜索">
+                    </div>
+                </div>
+            </form>
+            <div class="navbar-right ">
+                <ul class="nav navbar-nav m-n hidden-xs nav-user user">
+                    <li class="hidden-xs">
+                        @Html.Partial("_LoginPartial")
+                    </li>
+                    <li class="hidden-xs">
+                        @{Html.RenderAction("CartSummary", "ShoppingCart");}
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section>
+            <section class="hbox stretch">
+                <!-- .aside -->
+                <aside class="bg-black aside hidden-print" id="nav">
+                    <section class="vbox">
+                        <section class="w-f-md  ">
+                            <div class=" " data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railOpacity="0.2">
+
+
+
+                                <!-- nav -->
+                                <nav class="nav-primary hidden-xs">
+                                    <ul class="nav bg clearfix">
+                                        <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                                            Discover
+                                        </li>
+                                        <li>
+                                            <a href="~/Home/Index">
+                                                <i class="icon-home icon text-success"></i>
+                                                <span class="font-bold">主页</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Albums/Index">
+                                                <i class="icon-trophy icon text-success"></i>
+                                                <span class="font-bold">专辑</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Artists/Index">
+                                                <i class="icon-playlist  text-success"></i>
+                                                <span class="font-bold">艺术家</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Genres/Index" data-target="#content" data-el="#bjax-el" data-replace="true">
+                                                <i class="icon-social-youtube icon  text-success"></i>
+                                                <span class="font-bold">商店</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Home/Contact">
+                                                <i class="icon-envelope icon text-success"></i>
+                                                <span class="font-bold">联系我们</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Home/About">
+                                                <i class="icon-users text-success"></i>
+                                                <b class="badge bg-primary pull-right">6</b>
+                                                <span class="font-bold">关于</span>
+                                            </a>
+                                        </li>
+                                        <li class="m-b hidden-nav-xs"></li>
+                                    </ul>
+                                </nav>
+                                <!-- / nav -->
+                            </div>
+                        </section>
+
+                        <footer class="footer hidden-xs no-padder text-center-nav-xs">
+                            <div class="bg hidden-xs hide">
+                                <div class="dropdown dropup wrapper-sm clearfix">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="thumb-sm avatar pull-left m-l-xs">
+                                            <img src="/Content/images/a3.png" class="dker" alt="...">
+                                            <i class="on b-black"></i>
+                                        </span>
+                                        <span class="hidden-nav-xs clear">
+                                            <span class="block m-l">
+                                                <strong class="font-bold text-lt">John.Smith</strong>
+                                                <b class="caret"></b>
+                                            </span>
+                                            <span class="text-muted text-xs block m-l">Art Director</span>
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu animated fadeInRight aside text-left">
+                                        <li>
+                                            <span class="arrow bottom hidden-nav-xs"></span>
+                                            <a href="#">Settings</a>
+                                        </li>
+                                        <li>
+                                            <a href="profile.html">Profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="badge bg-danger pull-right">3</span>
+                                                Notifications
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="docs.html">Help</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="modal.lockme.html" data-toggle="ajaxModal">Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </footer>
+                    </section>
+                </aside>
+                <!-- /.aside -->
+                <section id="content">
+                    <section class="wrapper">
+                        <div class="m-b">
+                            @{
+                                string controllerCurrent = ViewContext.RouteData.Values["controller"].ToString();
+                                if (controllerCurrent.Equals("Store", StringComparison.CurrentCultureIgnoreCase))
+                                {
+                                    <section id="content">
+                                        <section class="vbox">
+                                            <section class="w-f-md" id="bjax-target">
+                                                <section class="hbox stretch">
+                                                    <!-- side content -->
+                                                    <aside class="aside bg-light dk" id="sidebar">
+                                                        <section class="vbox animated fadeInUp">
+                                                            <section class="scrollable hover">
+                                                                <div class="list-group no-radius no-border no-bg m-t-n-xxs m-b-none auto">
+                                                                    @{Html.RenderAction("GenreMenu", "Store");}
+                                                                </div>
+                                                            </section>
+                                                        </section>
+                                                    </aside>
+                                                    <!-- / side content -->
+                                                    <section>
+                                                        <section class="vbox">
+                                                            <section class="scrollable padder-lg">
+                                                                @RenderBody()
+                                                            </section>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                            </section>
+                                        </section>
+                                    </section>
+
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            @RenderBody()
+                                                                        }
+                            }
+                        </div>
+                    </section>
+                    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+                </section>
+            </section>
+        </section>
+    </section>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datatables")
+    @Scripts.Render("~/bundles/jPlayer")
+    @Scripts.Render("~/bundles/App")
+    @Scripts.Render("~/bundles/slimscroll")
+
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+</body>
+</html>

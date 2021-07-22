@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MvcMusicStore.Models.Genre>
+@{
+    ViewBag.Title = "类别";
+    Layout = "~/Views/Shared/layout-fluid.cshtml";
+}
+@helper Truncate(string input, int length)
+{
+if (input.Length <= length)
+{
+        @input
+}
+else
+{
+        @input.Substring(0, length)<text>...</text>
+}
+}
+<section id="content">
+    <section class="vbox">
+        <section class="w-f-md" id="bjax-target">
+            <section class="hbox stretch">
+                <!-- side content -->
+                <aside class="aside bg-light dk" id="sidebar">
+                    <section class="vbox animated fadeInUp">
+                        <section class="scrollable hover">
+                            <div class="list-group no-radius no-border no-bg m-t-n-xxs m-b-none auto">
+                                @{Html.RenderAction("GenreMenu", "Store");}
+                            </div>
+                        </section>
+                    </section>
+                </aside>
+                <!-- / side content -->
+                <section>
+                    <section class="vbox">
+                        <section class="scrollable padder-lg text-center">
+                            <h2>全部专辑</h2>
+                            <div class="row row-sm">
+                                @foreach (var item in Model)
+                                {                                 
+                                    foreach (var Album in item.Albums)
+                                    {
+                                        @Html.Partial("_AlbumPartial",Album);                                     
+                                    }
+                                }
+                            </div>
+                            <div style="text-align:center;">                            
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>

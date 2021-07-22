@@ -1,0 +1,31 @@
+﻿@model MvcMusicStore.Models.Album
+@helper Truncate(string input, int length)
+{
+if (input.Length <= length)
+{
+        @input
+}
+else
+{
+        @input.Substring(0, length)<text>...</text>
+}
+}
+
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <div class="item">
+            <div class="pos-rlt">
+                <div class="item-overlay opacity r r-2x bg-black">
+                    <div class="center text-center m-t-n">
+                        <a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+                    </div>
+                </div>
+                <a href="#"><img src="@Model.AlbumArtUrl" class="r r-2x img-full"></a>
+            </div>
+            <div class="padder-v">
+                @Html.ActionLink(Truncate(Model.Title, 12).ToHtmlString(), "Details", "Store", new { id = Model.AlbumId }, new { @class = "text-ellipsis" })
+                @Html.ActionLink(Model.Price.ToString(), "Details", "Store", new { id = Model.AlbumId }, new { @class = "text-ellipsis text-xs text-muted" })
+                @Html.ActionLink("查看详情", "Details", "Store", new { id = Model.AlbumId }, new { @class = "btn btn-sm btn-success" })
+                @Html.ActionLink("加入购物车", "AddToCart", "ShoppingCart", new { id = Model.AlbumId }, new { @class = "btn btn-sm btn-primary" })
+            </div>
+        </div>
+    </div>

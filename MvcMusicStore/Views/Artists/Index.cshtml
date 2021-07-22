@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MvcMusicStore.Models.Artist>
+
+@{
+    ViewBag.Title = "歌手";
+    Layout = "~/Views/Shared/layout-fluid.cshtml";
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="table" cellspacing="0" style="width:100%;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ArtistId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ArtistId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ArtistId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

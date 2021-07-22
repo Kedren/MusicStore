@@ -1,0 +1,20 @@
+﻿@model MvcMusicStore.Models.Genre
+@helper Truncate(string input, int length)
+{
+if (input.Length <= length)
+{
+        @input
+}
+else
+{
+        @input.Substring(0, length)<text>...</text>
+}
+}
+
+<h2>@Model.Name-专辑</h2>
+<div class="row row-sm">
+    @foreach (var item in Model.Albums)
+    {
+        @Html.Partial("_AlbumPartial", item);
+    }
+</div>

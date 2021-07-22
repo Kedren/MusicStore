@@ -1,0 +1,38 @@
+﻿@model MvcMusicStore.Models.Album
+@{
+    ViewBag.Title = "Album - " + Model.Title;
+}
+@helper Truncate(string input, int length)
+{
+if (input.Length <= length)
+{
+        @input
+}
+else
+{
+        @input.Substring(0, length)<text>...</text>
+}
+}
+
+
+<h2>@Truncate(Model.Title, 12).ToHtmlString()</h2>
+<p>
+    <img alt="@Model.Title" src="@Model.AlbumArtUrl" />
+</p>
+<div id="album-details">
+    <p>
+        <i class="icon-disc icon text-success"></i><em>专辑:</em>
+        @Model.Genre.Name
+    </p>
+    <p>
+        <i class="icon-user icon text-success"></i><em>歌手:</em>
+        @Model.Artist.Name
+    </p>
+    <p>
+        <i class="fa-yen icon text-success"></i><em>价格:</em>
+        @String.Format("{0:F}", Model.Price)
+    </p>
+    <p class="button">
+        @Html.ActionLink("加入购物车", "AddToCart", "ShoppingCart", new { id = Model.AlbumId }, new { @class = "btn btn-sm btn-primary" })
+    </p>
+</div>
